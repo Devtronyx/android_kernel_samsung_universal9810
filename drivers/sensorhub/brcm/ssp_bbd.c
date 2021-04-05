@@ -300,11 +300,13 @@ int callback_bbd_on_mcu_ready(void *ssh_data, bool ready)
         int i, idx = 0, dstLen = (int)strlen(dst), totalLen = (int)strlen(src);
         
         for(i = 0; i < totalLen && idx < dstLen; i++) {
-            if(src[i] == '"' || src[i] == '<' || src[i] == '>')
+            if(src[i] == '"' || src[i] == '<' || src[i] == '>') {
                 continue;
-            if(src[i] == ';')
+			}
+            if(src[i] == ';') {
                 break;
-                dst[idx++] = src[i];
+			}
+            dst[idx++] = src[i];
         }
 }
 int callback_bbd_on_control(void *ssh_data, const char *str_ctrl)
